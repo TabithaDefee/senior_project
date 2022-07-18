@@ -13,14 +13,165 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r packages, include=FALSE}
+library(tidyverse)
+library(ggplot2)
+library(pander)
+library(ggthemes)
+library(patchwork)
+```
+
 ## Getting the Data
 
 ```{r import}
-
+house <- read.csv("~/A Bunch of Classes/The Senior Project/Senior Project/Housing.csv")
+pander(names(house))
 ```
 
 ## Stuff
 
-```{r pressure, echo=FALSE}
+```{r, include = FALSE}
+#full1 <- select(full, -c(X, LongDescription, Collateral)) %>%
+  #mutate(Gender = case_when(Gender == "F" ~ "Female",
+                            # Changing "F" to Female
+                            #Gender == "M" ~ "Male",
+                            # Changing "M" to Male
+                            #Gender == "U" ~ "Undetermined", 
+                            # Changing "U" to Undetermined
+                            #is.na(Gender)  ~ "Undetermined"))
+
+
+#pander(names(full1))
+
+#Taking out the "X" column
+```
+
+```{r, include = FALSE}
+#full2 <- full1 %>% 
+  #group_by(ukey) %>% 
+  #Grouping by customer
+  #slice_max(total.profit) %>%
+  #Takes Highest total profit from each customer
+  #ungroup() %>%
+  # This makes it so it's not grouping it by customer anymore
+  #arrange(desc(total.profit)) 
+  
+                            # is.na(Gender) calls all NA values in the Gender Column and then it's set to Undetermined
+  
+
+#translated: full2 <- slice_max((group_by(full1, ukey))
+#Grouping by user and slicing off the highest total profit amount per customer
+```
+
+```{r, include = FALSE}
+#full3 <- full2 %>% 
+  #head(100)
+
+#pander(names(full3))
+
+#Putting the data in decreasing order of total profit per customer
+#Showing the names in the new dataset
+```
+
+```{r, include = FALSE}
+#full4 <- full2 %>% 
+  #tail(100)
+
+#Head(100)shows the top 100 of the dataset since it was arranged in decreasing order of total profit, it shows top most profitable customers
+```
+
+```{r}
+#full5 <- full1 %>%
+  #filter(card == "Visa Cash Back Rewards") %>%
+  #group_by(ukey) %>%
+  #slice_max(total.profit) %>%
+  #arrange(desc(total.profit)) %>%
+  #head(100) %>%
+  #select(-c(GeoCoord, BranchAddress, cust.lat, cust.long, branch.lat, branch.long,
+            #id, geometry))
+
+#full6 <- full1 %>%
+  #filter(card == "Visa Platinum") %>%
+  #group_by(ukey) %>%
+  #slice_max(total.profit) %>%
+  #arrange(desc(total.profit)) %>%
+  #head(100) %>%
+  #select(-c(GeoCoord, BranchAddress, cust.lat, cust.long, branch.lat, branch.long,
+            #id, geometry))
+```
+
+# Data Sets {.tabset .tabset-pills .tabset-fade}
+
+</br>
+
+## Unmodified Data
+
+### Profits by Gender
+
+```{R, fig.width = 8}
+#c1 <- full5 %>% 
+  #ggplot(aes(color= Gender, fill = Gender, x = Gender, y = total.profit)) + #Initial graph code
+  #geom_col(position = "dodge") + # This tells it to make a bar chart
+  #scale_color_manual(values = c("Male" = "dodgerblue4", "Female" = "deeppink2", "Undetermined" = "darkseagreen2")) +
+  #scale_fill_manual(values = c("Male" = "dodgerblue4", "Female" = "deeppink2", "Undetermined" = "darkseagreen2")) +
+  # Manually saying what colors to make the values
+  #labs(title = "Visa Cash Back Rewards", x = "Card Type", y = "Total Profit", fill = "Gender", color = "Gender") + # Changing the labels on the plot
+  #theme_bw() + #Changes plot background to dark
+  #coord_cartesian(ylim = c(0, 30000)) +
+  #theme(plot.title = element_text(hjust = 0.5), legend.position = "bottom",
+        #axis.title.x = element_blank()) # Changing the Title text to be centered
+
+#c2 <- full6 %>% 
+  #ggplot(aes(color = Gender, fill = Gender, x = Gender, y = total.profit)) + #Initial graph code
+  #geom_col(position = "dodge") + # This tells it to make a bar chart
+  #scale_color_manual(values = c("Male" = "dodgerblue4", "Female" = "deeppink2", "Undetermined" = "darkseagreen2")) +
+  #scale_fill_manual(values = c("Male" = "dodgerblue4", "Female" = "deeppink2", "Undetermined" = "darkseagreen2")) + # Manually saying what colors to make the values
+  #labs(title = "Visa Platinum", x = "Card Type", y = "Total Profit", fill = "Gender", color = "Gender") + # Changing the labels on the plot
+  #theme_bw() + #Changes plot background to dark
+  #coord_cartesian(ylim = c(0, 30000)) +
+  #theme(plot.title = element_text(hjust = 0.5), legend.position = "bottom",
+        #axis.title.x = element_blank())
+
+
+#c1 + c2 + plot_layout(guides = "collect") &
+  #theme(legend.position = "bottom")
+```
+
+```{R, fig.width = 8}
+#full5 %>% 
+  #ggplot(aes(color= Gender, fill = Gender, x = Age, y = total.profit)) + #Initial graph code
+  #geom_point() +
+  #geom_smooth() + # This tells it to make a bar chart
+  #facet_wrap(~ Gender, ncol = 3) +
+  #scale_color_manual(values = c("Male" = "dodgerblue4", "Female" = "deeppink2", "Undetermined" = "darkseagreen2")) +
+  #scale_fill_manual(values = c("Male" = "dodgerblue4", "Female" = "deeppink2", "Undetermined" = "darkseagreen2")) +
+  # Manually saying what colors to make the values
+  #labs(title = "Visa Cash Back Rewards", x = "Age", y = "Total Profit", fill = "Gender", color = "Gender") + # Changing the labels on the plot
+  #theme_bw() + #Changes plot background to dark
+  #coord_cartesian(ylim = c(0, 30000)) +
+  #theme(plot.title = element_text(hjust = 0.5), legend.position = "bottom") # Changing the Title text to be centered
+
+#full6 %>% 
+  #ggplot(aes(color = Gender, fill = Gender, x = Age, y = total.profit)) + #Initial graph code
+  #geom_point() +
+  #geom_smooth() +
+  #facet_wrap(~ Gender, ncol = 3) +
+  #scale_color_manual(values = c("Male" = "dodgerblue4", "Female" = "deeppink2", "Undetermined" = "darkseagreen2")) +
+  #scale_fill_manual(values = c("Male" = "dodgerblue4", "Female" = "deeppink2", "Undetermined" = "darkseagreen2")) + # Manually saying what colors to make the values
+  #labs(title = "Visa Platinum", x = "Age", y = "Total Profit", fill = "Gender", color = "Gender") + # Changing the labels on the plot
+  #theme_bw() + #Changes plot background to dark
+  #coord_cartesian(ylim = c(0, 30000)) +
+  #theme(plot.title = element_text(hjust = 0.5), legend.position = "bottom")
+```
+
+</br>
+
+```{r, echo=FALSE}
 # Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 ```
+
+
+```{r}
+#"" = "dodgerblue4", "" = "deeppink2", "" = "darkseagreen2"
+```
+

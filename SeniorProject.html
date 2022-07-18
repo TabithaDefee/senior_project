@@ -1605,9 +1605,94 @@ div.tocify {
 
 <div id="getting-the-data" class="section level2">
 <h2>Getting the Data</h2>
+<pre class="r"><code>house &lt;- read.csv(&quot;~/A Bunch of Classes/The Senior Project/Senior Project/Housing.csv&quot;)
+pander(names(house))</code></pre>
+<p><em>price</em>, <em>area</em>, <em>bedrooms</em>, <em>bathrooms</em>,
+<em>stories</em>, <em>mainroad</em>, <em>guestroom</em>,
+<em>basement</em>, <em>hotwaterheating</em>, <em>airconditioning</em>,
+<em>parking</em>, <em>prefarea</em> and <em>furnishingstatus</em></p>
 </div>
 <div id="stuff" class="section level2">
 <h2>Stuff</h2>
+<pre class="r"><code>#full5 &lt;- full1 %&gt;%
+  #filter(card == &quot;Visa Cash Back Rewards&quot;) %&gt;%
+  #group_by(ukey) %&gt;%
+  #slice_max(total.profit) %&gt;%
+  #arrange(desc(total.profit)) %&gt;%
+  #head(100) %&gt;%
+  #select(-c(GeoCoord, BranchAddress, cust.lat, cust.long, branch.lat, branch.long,
+            #id, geometry))
+
+#full6 &lt;- full1 %&gt;%
+  #filter(card == &quot;Visa Platinum&quot;) %&gt;%
+  #group_by(ukey) %&gt;%
+  #slice_max(total.profit) %&gt;%
+  #arrange(desc(total.profit)) %&gt;%
+  #head(100) %&gt;%
+  #select(-c(GeoCoord, BranchAddress, cust.lat, cust.long, branch.lat, branch.long,
+            #id, geometry))</code></pre>
+</div>
+<div id="data-sets" class="section level1 tabset tabset-pills tabset-fade">
+<h1 class="tabset tabset-pills tabset-fade">Data Sets</h1>
+<p></br></p>
+<div id="unmodified-data" class="section level2">
+<h2>Unmodified Data</h2>
+<div id="profits-by-gender" class="section level3">
+<h3>Profits by Gender</h3>
+<pre class="r"><code>#c1 &lt;- full5 %&gt;% 
+  #ggplot(aes(color= Gender, fill = Gender, x = Gender, y = total.profit)) + #Initial graph code
+  #geom_col(position = &quot;dodge&quot;) + # This tells it to make a bar chart
+  #scale_color_manual(values = c(&quot;Male&quot; = &quot;dodgerblue4&quot;, &quot;Female&quot; = &quot;deeppink2&quot;, &quot;Undetermined&quot; = &quot;darkseagreen2&quot;)) +
+  #scale_fill_manual(values = c(&quot;Male&quot; = &quot;dodgerblue4&quot;, &quot;Female&quot; = &quot;deeppink2&quot;, &quot;Undetermined&quot; = &quot;darkseagreen2&quot;)) +
+  # Manually saying what colors to make the values
+  #labs(title = &quot;Visa Cash Back Rewards&quot;, x = &quot;Card Type&quot;, y = &quot;Total Profit&quot;, fill = &quot;Gender&quot;, color = &quot;Gender&quot;) + # Changing the labels on the plot
+  #theme_bw() + #Changes plot background to dark
+  #coord_cartesian(ylim = c(0, 30000)) +
+  #theme(plot.title = element_text(hjust = 0.5), legend.position = &quot;bottom&quot;,
+        #axis.title.x = element_blank()) # Changing the Title text to be centered
+
+#c2 &lt;- full6 %&gt;% 
+  #ggplot(aes(color = Gender, fill = Gender, x = Gender, y = total.profit)) + #Initial graph code
+  #geom_col(position = &quot;dodge&quot;) + # This tells it to make a bar chart
+  #scale_color_manual(values = c(&quot;Male&quot; = &quot;dodgerblue4&quot;, &quot;Female&quot; = &quot;deeppink2&quot;, &quot;Undetermined&quot; = &quot;darkseagreen2&quot;)) +
+  #scale_fill_manual(values = c(&quot;Male&quot; = &quot;dodgerblue4&quot;, &quot;Female&quot; = &quot;deeppink2&quot;, &quot;Undetermined&quot; = &quot;darkseagreen2&quot;)) + # Manually saying what colors to make the values
+  #labs(title = &quot;Visa Platinum&quot;, x = &quot;Card Type&quot;, y = &quot;Total Profit&quot;, fill = &quot;Gender&quot;, color = &quot;Gender&quot;) + # Changing the labels on the plot
+  #theme_bw() + #Changes plot background to dark
+  #coord_cartesian(ylim = c(0, 30000)) +
+  #theme(plot.title = element_text(hjust = 0.5), legend.position = &quot;bottom&quot;,
+        #axis.title.x = element_blank())
+
+
+#c1 + c2 + plot_layout(guides = &quot;collect&quot;) &amp;
+  #theme(legend.position = &quot;bottom&quot;)</code></pre>
+<pre class="r"><code>#full5 %&gt;% 
+  #ggplot(aes(color= Gender, fill = Gender, x = Age, y = total.profit)) + #Initial graph code
+  #geom_point() +
+  #geom_smooth() + # This tells it to make a bar chart
+  #facet_wrap(~ Gender, ncol = 3) +
+  #scale_color_manual(values = c(&quot;Male&quot; = &quot;dodgerblue4&quot;, &quot;Female&quot; = &quot;deeppink2&quot;, &quot;Undetermined&quot; = &quot;darkseagreen2&quot;)) +
+  #scale_fill_manual(values = c(&quot;Male&quot; = &quot;dodgerblue4&quot;, &quot;Female&quot; = &quot;deeppink2&quot;, &quot;Undetermined&quot; = &quot;darkseagreen2&quot;)) +
+  # Manually saying what colors to make the values
+  #labs(title = &quot;Visa Cash Back Rewards&quot;, x = &quot;Age&quot;, y = &quot;Total Profit&quot;, fill = &quot;Gender&quot;, color = &quot;Gender&quot;) + # Changing the labels on the plot
+  #theme_bw() + #Changes plot background to dark
+  #coord_cartesian(ylim = c(0, 30000)) +
+  #theme(plot.title = element_text(hjust = 0.5), legend.position = &quot;bottom&quot;) # Changing the Title text to be centered
+
+#full6 %&gt;% 
+  #ggplot(aes(color = Gender, fill = Gender, x = Age, y = total.profit)) + #Initial graph code
+  #geom_point() +
+  #geom_smooth() +
+  #facet_wrap(~ Gender, ncol = 3) +
+  #scale_color_manual(values = c(&quot;Male&quot; = &quot;dodgerblue4&quot;, &quot;Female&quot; = &quot;deeppink2&quot;, &quot;Undetermined&quot; = &quot;darkseagreen2&quot;)) +
+  #scale_fill_manual(values = c(&quot;Male&quot; = &quot;dodgerblue4&quot;, &quot;Female&quot; = &quot;deeppink2&quot;, &quot;Undetermined&quot; = &quot;darkseagreen2&quot;)) + # Manually saying what colors to make the values
+  #labs(title = &quot;Visa Platinum&quot;, x = &quot;Age&quot;, y = &quot;Total Profit&quot;, fill = &quot;Gender&quot;, color = &quot;Gender&quot;) + # Changing the labels on the plot
+  #theme_bw() + #Changes plot background to dark
+  #coord_cartesian(ylim = c(0, 30000)) +
+  #theme(plot.title = element_text(hjust = 0.5), legend.position = &quot;bottom&quot;)</code></pre>
+<p></br></p>
+<pre class="r"><code>#&quot;&quot; = &quot;dodgerblue4&quot;, &quot;&quot; = &quot;deeppink2&quot;, &quot;&quot; = &quot;darkseagreen2&quot;</code></pre>
+</div>
+</div>
 </div>
 
 
