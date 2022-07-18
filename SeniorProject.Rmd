@@ -21,6 +21,12 @@ library(ggthemes)
 library(patchwork)
 ```
 
+</br>
+
+# Stuff {.tabset .tabset-pills .tabset-fade}
+
+</br>
+
 ## Getting the Data
 
 ```{r import}
@@ -99,8 +105,6 @@ pander(names(house))
   #select(-c(GeoCoord, BranchAddress, cust.lat, cust.long, branch.lat, branch.long,
             #id, geometry))
 ```
-
-# Data Sets {.tabset .tabset-pills .tabset-fade}
 
 </br>
 

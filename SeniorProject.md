@@ -13,6 +13,12 @@ output:
 
 
 
+</br>
+
+# Stuff {.tabset .tabset-pills .tabset-fade}
+
+</br>
+
 ## Getting the Data
 
 
@@ -53,8 +59,6 @@ _price_, _area_, _bedrooms_, _bathrooms_, _stories_, _mainroad_, _guestroom_, _b
   #select(-c(GeoCoord, BranchAddress, cust.lat, cust.long, branch.lat, branch.long,
             #id, geometry))
 ```
-
-# Data Sets {.tabset .tabset-pills .tabset-fade}
 
 </br>
 
