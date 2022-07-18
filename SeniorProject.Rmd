@@ -1,0 +1,26 @@
+---
+title: "Senior Project"
+author: "Tabitha Defee"
+output:
+  html_document:
+    keep_md: true
+    code_folding: hide
+    toc: true
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Getting the Data
+
+```{r import}
+
+```
+
+## Stuff
+
+```{r pressure, echo=FALSE}
+# Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+```
