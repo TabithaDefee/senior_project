@@ -27,14 +27,63 @@ library(patchwork)
 
 </br>
 
-## Getting the Data
+## Stuff 2
+
+### Getting the Data
 
 ```{r import}
 house <- read.csv("~/A Bunch of Classes/The Senior Project/Senior Project/Housing.csv")
 pander(names(house))
+
+scheme <- c("darkseagreen2", "dodgerblue4", "deeppink2")
 ```
 
-## Stuff
+```{r}
+house %>% 
+  ggplot(aes(fill = furnishingstatus, color = furnishingstatus, x = furnishingstatus, y = price)) +
+  geom_col(position = "dodge") +
+  scale_color_manual(values = scheme) +
+  scale_fill_manual(values = scheme) +
+  labs(title = "Price by Furnishing Status", x = "Furnishing Status", y = "Price", fill = "Furnishing Status", color = "Furnishing Status") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme_bw()
+```
+
+```{r}
+house %>% 
+  ggplot(aes(fill = furnishingstatus, color = furnishingstatus, x = area, y = price)) +
+  geom_point() +
+  geom_smooth() +
+  facet_wrap(~ furnishingstatus) +
+  scale_color_manual(values = scheme) +
+  scale_fill_manual(values = scheme) +
+  labs(title = "Price", x = "Square Footage", y = "Price", fill = "Furnishing Status", color = "Furnishing Status") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme_bw()
+```
+
+```{r}
+house %>% 
+  ggplot(aes(fill = furnishingstatus, color = furnishingstatus, x = airconditioning, y = price)) +
+  geom_col(position = "dodge") +
+  scale_color_manual(values = scheme) +
+  scale_fill_manual(values = scheme) +
+  labs(title = "Price With and Without Air Conditioning", x = "Air Conditioning", y = "Price", fill = "Furnishing Status", color = "Furnishing Status") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme_bw()
+```
+
+```{r}
+house %>% 
+  ggplot(aes(fill = furnishingstatus, color = furnishingstatus, x = airconditioning, y = price)) +
+  geom_col(position = "dodge") +
+  scale_color_manual(values = scheme) +
+  scale_fill_manual(values = scheme) +
+  labs(title = "Price With and Without Air Conditioning", x = "Air Conditioning", y = "Price", fill = "Furnishing Status", color = "Furnishing Status") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme_bw()
+```
+
 
 ```{r, include = FALSE}
 #full1 <- select(full, -c(X, LongDescription, Collateral)) %>%
@@ -108,10 +157,6 @@ pander(names(house))
 
 </br>
 
-## Unmodified Data
-
-### Profits by Gender
-
 ```{R, fig.width = 8}
 #c1 <- full5 %>% 
   #ggplot(aes(color= Gender, fill = Gender, x = Gender, y = total.profit)) + #Initial graph code
@@ -140,6 +185,8 @@ pander(names(house))
 #c1 + c2 + plot_layout(guides = "collect") &
   #theme(legend.position = "bottom")
 ```
+
+</br>
 
 ```{R, fig.width = 8}
 #full5 %>% 
@@ -174,6 +221,7 @@ pander(names(house))
 # Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 ```
 
+</br>
 
 ```{r}
 #"" = "dodgerblue4", "" = "deeppink2", "" = "darkseagreen2"

@@ -19,7 +19,9 @@ output:
 
 </br>
 
-## Getting the Data
+## Stuff 2
+
+### Getting the Data
 
 
 ```r
@@ -29,7 +31,72 @@ pander(names(house))
 
 _price_, _area_, _bedrooms_, _bathrooms_, _stories_, _mainroad_, _guestroom_, _basement_, _hotwaterheating_, _airconditioning_, _parking_, _prefarea_ and _furnishingstatus_
 
-## Stuff
+```r
+scheme <- c("darkseagreen2", "dodgerblue4", "deeppink2")
+```
+
+
+```r
+house %>% 
+  ggplot(aes(fill = furnishingstatus, color = furnishingstatus, x = furnishingstatus, y = price)) +
+  geom_col(position = "dodge") +
+  scale_color_manual(values = scheme) +
+  scale_fill_manual(values = scheme) +
+  labs(title = "Price by Furnishing Status", x = "Furnishing Status", y = "Price", fill = "Furnishing Status", color = "Furnishing Status") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme_bw()
+```
+
+![](SeniorProject_files/figure-html/unnamed-chunk-1-1.png)<!-- -->
+
+
+```r
+house %>% 
+  ggplot(aes(fill = furnishingstatus, color = furnishingstatus, x = area, y = price)) +
+  geom_point() +
+  geom_smooth() +
+  facet_wrap(~ furnishingstatus) +
+  scale_color_manual(values = scheme) +
+  scale_fill_manual(values = scheme) +
+  labs(title = "Price", x = "Square Footage", y = "Price", fill = "Furnishing Status", color = "Furnishing Status") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme_bw()
+```
+
+```
+## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+```
+
+![](SeniorProject_files/figure-html/unnamed-chunk-2-1.png)<!-- -->
+
+
+```r
+house %>% 
+  ggplot(aes(fill = furnishingstatus, color = furnishingstatus, x = airconditioning, y = price)) +
+  geom_col(position = "dodge") +
+  scale_color_manual(values = scheme) +
+  scale_fill_manual(values = scheme) +
+  labs(title = "Price With and Without Air Conditioning", x = "Air Conditioning", y = "Price", fill = "Furnishing Status", color = "Furnishing Status") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme_bw()
+```
+
+![](SeniorProject_files/figure-html/unnamed-chunk-3-1.png)<!-- -->
+
+
+```r
+house %>% 
+  ggplot(aes(fill = furnishingstatus, color = furnishingstatus, x = airconditioning, y = price)) +
+  geom_col(position = "dodge") +
+  scale_color_manual(values = scheme) +
+  scale_fill_manual(values = scheme) +
+  labs(title = "Price With and Without Air Conditioning", x = "Air Conditioning", y = "Price", fill = "Furnishing Status", color = "Furnishing Status") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme_bw()
+```
+
+![](SeniorProject_files/figure-html/unnamed-chunk-4-1.png)<!-- -->
+
 
 
 
@@ -62,10 +129,6 @@ _price_, _area_, _bedrooms_, _bathrooms_, _stories_, _mainroad_, _guestroom_, _b
 
 </br>
 
-## Unmodified Data
-
-### Profits by Gender
-
 
 ```r
 #c1 <- full5 %>% 
@@ -95,6 +158,8 @@ _price_, _area_, _bedrooms_, _bathrooms_, _stories_, _mainroad_, _guestroom_, _b
 #c1 + c2 + plot_layout(guides = "collect") &
   #theme(legend.position = "bottom")
 ```
+
+</br>
 
 
 ```r
@@ -128,6 +193,7 @@ _price_, _area_, _bedrooms_, _bathrooms_, _stories_, _mainroad_, _guestroom_, _b
 
 
 
+</br>
 
 
 ```r
